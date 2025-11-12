@@ -4,11 +4,44 @@
 // - If userId is negative or zero, reject with an error
 // - User data should include: id, name, email, and registrationDate
 // // TODO: Create a function that uses template literals for HTML generation
+function fetchUserData(){
+    const userData = {
+        id: 3,
+        name: "Yerr",
+        email: "yerryesesss@gmail.com",
+        registrationDate: "14 November 2026"
+    };
+    const userId = userData.id
+    return new Promise((resolve, reject)=>{
+        setTimeout(() => {
+            if (userId > 0) {
+                resolve(userData)
+            }else if(userId === 0){
+              reject(`⚠️ I am not requesting for your ID number, I have no affair with HOME AFFAIRS, ${userId} is not allowed`)
+            }
+            else{
+                reject(`❌ What are you high on, even at Home Affairs an ID doesn't include/contain a negative value, "${userId}" what is this now?`)
+            }
+        }, 1500);
+    })
+}
+
+async function main() {
+  try {
+    const data = await fetchUserData();
+    console.log("✅ User data fetched:", data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+main();
+
 // TODO: Create a Promise that simulates fetching user posts
 // - Should resolve after 1 second
 // - Return an array of post objects
 // - Each post should have: id, title, content, and userId
 // - If userId doesn't exist, reject with error
+
 // TODO: Create a function that chains multiple Promises together
 // - First fetch user data
 // - Then fetch their posts
@@ -18,16 +51,19 @@
 // - Use try/catch for error handling
 // - Log each step of the process
 // - Return combined user and posts data
+
 // TODO: Create a function that fetches multiple users in parallel
 // - Take an array of userIds
 // - Fetch all users simultaneously using Promise.all
 // - Handle errors for individual user fetches
 // - Return array of successfully fetched users
+
 // TODO: Create a function that fetches users and their posts in parallel
 // - Fetch user data for multiple users
 // - Once user data is received, fetch all their posts in parallel
 // - Combine user and posts data
 // - Handle errors appropriately
+
 // TODO: Test success cases
 // - Test single user fetch
 // - Test multiple user fetch
