@@ -36,6 +36,7 @@ async function main() {
 }
 main();
 
+
 // TODO: Create a Promise that simulates fetching user posts
 // - Should resolve after 1 second
 // - Return an array of post objects
@@ -47,6 +48,7 @@ main();
 // - Then fetch their posts
 // - Combine the data into a single object
 // - Handle any errors that occur in the chain
+
 // TODO: Convert the above Promise chain to use async/await
 // - Use try/catch for error handling
 // - Log each step of the process
