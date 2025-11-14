@@ -1,14 +1,14 @@
 // TODO: Create a Promise that simulates fetching user data
 // - The Promise should resolve after 1.5 seconds
-// - If userId is positive, resolve with user data object
-// - If userId is negative or zero, reject with an error
 // - User data should include: id, name, email, and registrationDate
+// - If userId is negative or zero, reject with an error
+// - If userId is positive, resolve with user data object
 // // TODO: Create a function that uses template literals for HTML generation
 function fetchUserData(){
     const userData = {
         id: 3,
-        name: "Yerr",
-        email: "yerryesesss@gmail.com",
+        userName: "Yerr",
+        userEmail: "yerryesesss@gmail.com",
         registrationDate: "14 November 2026"
     };
     const userId = userData.id
@@ -29,7 +29,14 @@ function fetchUserData(){
 async function main() {
   try {
     const data = await fetchUserData();
-    console.log("✅ User data fetched:", data);
+    const userTempLit = `<label>name</label>
+                         <input>${data.userName}</input>
+                         <label>email</label>
+                         <input>${data.userEmail}</input>
+                         <label>name</label>
+                         <input>${data.registrationDate}</input>
+    `
+    console.log("✅ User data fetched:", userTempLit); 
   } catch (error) {
     console.error(error);
   }
