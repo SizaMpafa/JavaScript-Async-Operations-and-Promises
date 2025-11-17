@@ -37,6 +37,7 @@ function fetchUserData(){
 const fetchUserPosts =  async () => {
   try{
     const user = await fetchUserData();
+    const users = [user]
     const posts = [
       {
         id: 1,
@@ -57,7 +58,7 @@ const fetchUserPosts =  async () => {
         postBelongs: user.id
       }
     ]
-    
+   
       const readline = require("readline");
       const rl = readline.createInterface({
         input: process.stdin,
@@ -72,11 +73,11 @@ const fetchUserPosts =  async () => {
       });
     });
 
-    const postUserId = user.postBelongs
+    const postUserId = posts[2].postBelongs
             return new Promise((resolve, reject)=>{
               setTimeout(() => {
-                if (guessedUserId === null){
-                  reject(`User number ${guessedUserId} does not exist. We only have  ${user.length} and  that user's id is ${postUserId} , so we can't fetch posts for user number ${postUserId}?`)
+                if (guessedUserId !== postUserId ){
+                  reject(`User number ${guessedUserId} does not exist. We only have  ${users.length} user and  that user's id is ${postUserId} , so we can't fetch posts for user number ${guessedUserId}?`)
                 } else{
                   resolve(posts)
                 }  
@@ -97,14 +98,14 @@ async function main() {
                          <label>name</label>
                          <input>${data.registrationDate}</input>
     `
-  console.log("✅ User data fetched:", userTempLit); 
+  console.log("✅ User data fetched:", userTempLit);
   } catch (error) {
     console.error(error);
   }
 
   try {
     const post = await fetchUserPosts();
-    console.log("✅ User posts fetched:", post); 
+    console.log("✅ User posts fetched:", post);
   } catch (error) {
     console.error(error);
   }
@@ -119,6 +120,7 @@ main();
 // - Then fetch their posts
 // - Combine the data into a single object
 // - Handle any errors that occur in the chain
+
 
 // TODO: Convert the above Promise chain to use async/await
 // - Use try/catch for error handling
