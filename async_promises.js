@@ -88,6 +88,25 @@ const fetchUserPosts =  async () => {
   }
 }
 
+
+// TODO: Create a function that chains multiple Promises together
+// - First fetch user data
+// - Then fetch their posts
+// - Combine the data into a single object
+// - Handle any errors that occur in the chain
+
+const fetchUserAndPosts = async () => {
+  return fetchUserData()
+    .then((user) => {
+      console.log("✔ User data fetched via chain");
+      return fetchUserPosts().then((posts) => ({ user, posts })); 
+    })
+    .catch((error) => {
+      console.error("❌ Error in chained Promises:", error);
+      throw error; 
+    });
+}
+
 async function main() {
    try {
     const data = await fetchUserData();
@@ -109,18 +128,21 @@ async function main() {
   } catch (error) {
     console.error(error);
   }
+  
+  try {
+  const combined = await fetchUserAndPosts();
+  console.log("📌 Combined result from chained Promises:", combined);
+  console.log("---------------------------------------------")
+  console.log(combined.user)
+  console.log("---------------------------------------------")
+  console.log(combined.posts[2].postContent)
+  console.log("---------------------------------------------")
+} catch (error) {
+  console.error(error);
+}
+
 }
 main();
-
-
-
-
-// TODO: Create a function that chains multiple Promises together
-// - First fetch user data
-// - Then fetch their posts
-// - Combine the data into a single object
-// - Handle any errors that occur in the chain
-
 
 // TODO: Convert the above Promise chain to use async/await
 // - Use try/catch for error handling
