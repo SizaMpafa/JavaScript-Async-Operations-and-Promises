@@ -244,10 +244,11 @@ const fetchUserAndPosts = async () => {
 // - Combine user and posts data
 // - Handle errors appropriately
 
-const fetchUsersAndPostsInParallel = async (userIds) => {
+const fetchUsersAndPostsInParallel = async () => {
   try {
     console.log("⏳ Fetching users in parallel...");
-
+    const allUsers = await fetchMultipleUsers()
+    const userIds = allUsers.map(u => u.id)
     const users = await Promise.all(
       userIds.map(id =>
         new Promise((resolve, reject) => {
@@ -280,6 +281,7 @@ const fetchUsersAndPostsInParallel = async (userIds) => {
         })
       )
     );
+    console.log(posts)
 
     return users.map((user, i) => ({
       user,
